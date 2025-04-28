@@ -1,16 +1,12 @@
 import './App.css'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import { Suspense, lazy } from 'react'
-import Home from './pages/Home/Home'
 import { ScaleLoader } from 'react-spinners'
-
-
-// Lazy-load pages
-const Auth = lazy(() => import('./pages/Auth/Auth'))
-const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
-const CreatePatient = lazy(() => import('./pages/CreatePatient/CreatePatient'))
-const ListPatient = lazy(() => import('./pages/ListPatient/ListPatient'))
-const NotFound = lazy(() => import('./pages/NotFound/NotFound'))
+import Home from './pages/Home/Home'
+import Auth from './pages/Auth/Auth'
+import Dashboard from './pages/Dashboard/Dashboard'
+import CreatePatient from './pages/CreatePatient/CreatePatient'
+import ListPatient from './pages/ListPatient/ListPatient'
+import NotFound from './pages/NotFound/NotFound'
 
 function LoadingFallback() {
   return (
@@ -29,16 +25,14 @@ function LoadingFallback() {
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/create-patient" element={<CreatePatient />} />
-          <Route path="/list-patient" element={<ListPatient />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/create-patient" element={<CreatePatient />} />
+        <Route path="/list-patient" element={<ListPatient />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   )
 }
